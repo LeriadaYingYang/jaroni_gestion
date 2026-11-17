@@ -7,6 +7,7 @@ public partial class FormularioPedidos : Form
     public FormularioPedidos()
     {
         InitializeComponent();
+        CargarClientesYProductos();
         MostrarPedidos();
     }
 
@@ -18,24 +19,47 @@ public partial class FormularioPedidos : Form
             listaVisualPedidos.Items.Add("Turno: " + pedido.NumeroTurno + " - " + pedido.NombreCliente + " - " + pedido.Descripcion);
     }
 
+    private void CargarClientesYProductos()
+    {
+        foreach (Cliente cliente in MemoriaTemporal.Clientes.Inorden())
+            listaDesplegableClientes.Items.Add(cliente);
+        foreach (Producto producto in MemoriaTemporal.Productos.ObtenerTodos())
+            listaDesplegableProductos.Items.Add(producto);
+    }
+
     private void botonRegistrarPedido_Click(object sender, EventArgs e)
     {
         if (!int.TryParse(cajaTextoNumeroTurno.Text, out int numeroTurno))
         {
-            MessageBox.Show("Ingrese un número de turno válido.");
+            MessageBox.Show("Ingrese un número válido.");
             return;
         }
-        string nombreCliente = cajaTextoNombreCliente.Text.Trim();
-        string descripcion = cajaTextoDescripcion.Text.Trim();
-        if (nombreCliente.Length == 0 || descripcion.Length == 0)
+        Cliente? cliente = listaDesplegableClientes.SelectedItem as Cliente;
+        Producto? producto = listaDesplegableProductos.SelectedItem as Producto;
+        if (cliente == null || MemoriaTemporal.Clientes.Buscar(cliente.Codigo) != cliente)
         {
-            MessageBox.Show("Ingrese el nombre del cliente y la descripción.");
+            MessageBox.Show("Seleccione un cliente registrado.");
+            return;
+        }
+        int indiceProducto = producto == null ? -1 : MemoriaTemporal.Productos.Buscar(producto.Codigo);
+        if (indiceProducto < 0 || MemoriaTemporal.Productos.ObtenerTodos()[indiceProducto] != producto)
+        {
+            MessageBox.Show("Seleccione un producto registrado.");
+            return;
+        }
+        if (!int.TryParse(cajaTextoCantidad.Text, out int cantidad) || cantidad <= 0)
+        {
+            MessageBox.Show("Ingrese una cantidad válida y positiva.");
             return;
         }
         Pedido pedido = new Pedido();
         pedido.NumeroTurno = numeroTurno;
-        pedido.NombreCliente = nombreCliente;
-        pedido.Descripcion = descripcion;
+        pedido.CodigoCliente = cliente.Codigo;
+        pedido.NombreCliente = cliente.Nombre;
+        pedido.CodigoProducto = producto!.Codigo;
+        pedido.NombreProducto = producto.Nombre;
+        pedido.Cantidad = cantidad;
+        pedido.Descripcion = producto.Nombre + " - Cantidad: " + cantidad;
         MemoriaTemporal.Pedidos.Encolar(pedido);
         MostrarPedidos();
     }
@@ -48,6 +72,7 @@ public partial class FormularioPedidos : Form
             return;
         }
         Pedido pedido = MemoriaTemporal.Pedidos.Desencolar();
+        MemoriaTemporal.PedidoAtendido = pedido;
         MostrarPedidos();
         MessageBox.Show("Pedido atendido: turno " + pedido.NumeroTurno + " - " + pedido.NombreCliente + " - " + pedido.Descripcion);
     }

@@ -10,6 +10,7 @@ public partial class FormularioCotizaciones : Form
     public FormularioCotizaciones()
     {
         InitializeComponent();
+        CargarClientesYProductos();
         nodoActual = MemoriaTemporal.Cotizaciones.ObtenerCabeza();
         MostrarCotizacionActual();
     }
@@ -30,28 +31,85 @@ public partial class FormularioCotizaciones : Form
             "\nTotal: " + cotizacion.Total;
     }
 
-    private void botonRegistrarCotizacion_Click(object sender, EventArgs e)
+    private void CargarClientesYProductos()
     {
-        if (!int.TryParse(cajaTextoNumero.Text, out int numero) ||
-            !int.TryParse(cajaTextoCantidad.Text, out int cantidad) ||
-            !decimal.TryParse(cajaTextoPrecio.Text, out decimal precio))
+        foreach (Cliente cliente in MemoriaTemporal.Clientes.Inorden())
+            listaDesplegableClientes.Items.Add(cliente);
+        foreach (Producto producto in MemoriaTemporal.Productos.ObtenerTodos())
+            listaDesplegableProductos.Items.Add(producto);
+    }
+
+    private void botonCalcular_Click(object sender, EventArgs e)
+    {
+        Producto? producto = listaDesplegableProductos.SelectedItem as Producto;
+        etiquetaPrecioSeleccionado.Text = producto == null ? "Precio: -" : "Precio: " + producto.Precio;
+        etiquetaTotal.Text = "Total: -";
+        if (producto != null && int.TryParse(cajaTextoCantidad.Text, out int cantidad) && cantidad > 0)
         {
-            MessageBox.Show("Ingrese un número, cantidad y precio válidos.");
+            try
+            {
+                etiquetaTotal.Text = "Total: " + (cantidad * producto.Precio);
+            }
+            catch (OverflowException)
+            {
+                etiquetaTotal.Text = "Total: fuera de rango";
+            }
+        }
+    }
+
+    private void botonUsarPedidoAtendido_Click(object sender, EventArgs e)
+    {
+        Pedido? pedido = MemoriaTemporal.PedidoAtendido;
+        if (pedido == null)
+        {
+            MessageBox.Show("No hay un pedido atendido.");
             return;
         }
-        string nombreCliente = cajaTextoCliente.Text.Trim();
-        string nombreProducto = cajaTextoProducto.Text.Trim();
-        if (nombreCliente.Length == 0 || nombreProducto.Length == 0)
+        Cliente? cliente = MemoriaTemporal.Clientes.Buscar(pedido.CodigoCliente);
+        int indiceProducto = MemoriaTemporal.Productos.Buscar(pedido.CodigoProducto);
+        if (cliente == null || indiceProducto < 0)
         {
-            MessageBox.Show("Ingrese el cliente y el producto.");
+            MessageBox.Show("El cliente o el producto ya no esta registrado.");
+            return;
+        }
+        listaDesplegableClientes.SelectedItem = cliente;
+        listaDesplegableProductos.SelectedItem = MemoriaTemporal.Productos.ObtenerTodos()[indiceProducto];
+        cajaTextoCantidad.Text = pedido.Cantidad.ToString();
+    }
+
+    private void botonRegistrarCotizacion_Click(object sender, EventArgs e)
+    {
+        if (!int.TryParse(cajaTextoNumero.Text, out int numero))
+        {
+            MessageBox.Show("Ingrese un número válido.");
+            return;
+        }
+        Cliente? cliente = listaDesplegableClientes.SelectedItem as Cliente;
+        Producto? producto = listaDesplegableProductos.SelectedItem as Producto;
+        if (cliente == null || MemoriaTemporal.Clientes.Buscar(cliente.Codigo) != cliente)
+        {
+            MessageBox.Show("Seleccione un cliente registrado.");
+            return;
+        }
+        int indiceProducto = producto == null ? -1 : MemoriaTemporal.Productos.Buscar(producto.Codigo);
+        if (indiceProducto < 0 || MemoriaTemporal.Productos.ObtenerTodos()[indiceProducto] != producto)
+        {
+            MessageBox.Show("Seleccione un producto registrado.");
+            return;
+        }
+        if (!int.TryParse(cajaTextoCantidad.Text, out int cantidad) || cantidad <= 0)
+        {
+            MessageBox.Show("Ingrese una cantidad válida y positiva.");
             return;
         }
         Cotizacion cotizacion = new Cotizacion();
         cotizacion.Numero = numero;
-        cotizacion.NombreCliente = nombreCliente;
-        cotizacion.NombreProducto = nombreProducto;
+        cotizacion.CodigoCliente = cliente.Codigo;
+        cotizacion.NombreCliente = cliente.Nombre;
+        cotizacion.CodigoProducto = producto!.Codigo;
+        cotizacion.NombreProducto = producto.Nombre;
         cotizacion.Cantidad = cantidad;
-        cotizacion.Precio = precio;
+        cotizacion.Precio = producto.Precio;
         try
         {
             decimal total = cotizacion.Total;

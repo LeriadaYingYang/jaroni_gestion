@@ -7,7 +7,8 @@ public partial class FormularioClientes : Form
     public FormularioClientes()
     {
         InitializeComponent();
-        MostrarClientes(MemoriaTemporal.Clientes.Inorden(), "Inorden");
+        listaVisualClientes.Items.Clear();
+        etiquetaRecorrido.Text = "Seleccione un recorrido.";
     }
 
     private void MostrarClientes(List<Cliente> clientes, string recorrido)
@@ -36,6 +37,7 @@ public partial class FormularioClientes : Form
         Cliente cliente = new Cliente();
         cliente.Codigo = codigo;
         cliente.Nombre = nombre;
+        cliente.Direccion = cajaTextoDireccion.Text.Trim();
         cliente.Telefono = telefono;
         cliente.TipoCliente = tipoCliente;
         if (!MemoriaTemporal.Clientes.Insertar(cliente))
@@ -43,7 +45,8 @@ public partial class FormularioClientes : Form
             MessageBox.Show("Ya existe un cliente con ese código.");
             return;
         }
-        MostrarClientes(MemoriaTemporal.Clientes.Inorden(), "Inorden");
+        listaVisualClientes.Items.Clear();
+        etiquetaRecorrido.Text = "Seleccione un recorrido.";
     }
 
     private void botonBuscarCliente_Click(object sender, EventArgs e)
@@ -60,8 +63,25 @@ public partial class FormularioClientes : Form
             return;
         }
         cajaTextoNombre.Text = cliente.Nombre;
+        cajaTextoDireccion.Text = cliente.Direccion;
         cajaTextoTelefono.Text = cliente.Telefono;
         cajaTextoTipoCliente.Text = cliente.TipoCliente;
+    }
+
+    private void botonGuardarDireccion_Click(object sender, EventArgs e)
+    {
+        if (!int.TryParse(cajaTextoCodigo.Text, out int codigo))
+        {
+            MessageBox.Show("Ingrese un codigo valido.");
+            return;
+        }
+        Cliente? cliente = MemoriaTemporal.Clientes.Buscar(codigo);
+        if (cliente == null)
+        {
+            MessageBox.Show("Cliente no encontrado.");
+            return;
+        }
+        cliente.Direccion = cajaTextoDireccion.Text.Trim();
     }
 
     private void botonEliminarCliente_Click(object sender, EventArgs e)
@@ -76,7 +96,8 @@ public partial class FormularioClientes : Form
             MessageBox.Show("Cliente no encontrado.");
             return;
         }
-        MostrarClientes(MemoriaTemporal.Clientes.Inorden(), "Inorden");
+        listaVisualClientes.Items.Clear();
+        etiquetaRecorrido.Text = "Seleccione un recorrido.";
     }
 
     private void botonPreorden_Click(object sender, EventArgs e)

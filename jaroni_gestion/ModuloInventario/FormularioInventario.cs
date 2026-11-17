@@ -33,6 +33,11 @@ public partial class FormularioInventario : Form
             MessageBox.Show("Ingrese el nombre del producto.");
             return;
         }
+        if (MemoriaTemporal.Productos.Buscar(codigo) != -1)
+        {
+            MessageBox.Show("Ya existe un producto con ese código.");
+            return;
+        }
         Producto producto = new Producto();
         producto.Codigo = codigo;
         producto.Nombre = nombre;
@@ -67,6 +72,15 @@ public partial class FormularioInventario : Form
             MessageBox.Show("Seleccione un producto para eliminar.");
             return;
         }
+        Producto producto = MemoriaTemporal.Productos.ObtenerTodos()[indice];
+        foreach (Venta venta in MemoriaTemporal.Ventas.ObtenerTodos())
+        {
+            if (venta.CodigoProducto == producto.Codigo)
+            {
+                MessageBox.Show("No se puede eliminar un producto con ventas registradas.");
+                return;
+            }
+        }
         MemoriaTemporal.Productos.Eliminar(indice);
         MostrarProductos();
     }
@@ -78,6 +92,11 @@ public partial class FormularioInventario : Form
 
     private void botonLimpiarProductos_Click(object sender, EventArgs e)
     {
+        if (!MemoriaTemporal.Ventas.EstaVacia)
+        {
+            MessageBox.Show("No se puede limpiar el inventario mientras existan ventas registradas.");
+            return;
+        }
         MemoriaTemporal.Productos.Limpiar();
         MostrarProductos();
     }

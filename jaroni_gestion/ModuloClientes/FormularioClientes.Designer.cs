@@ -3,6 +3,9 @@ namespace jaroni_gestion.Formularios;
 partial class FormularioClientes
 {
     private System.ComponentModel.IContainer components = null;
+    private Label etiquetaDireccion;
+    private TextBox cajaTextoDireccion;
+    private Button botonGuardarDireccion;
     private Label etiquetaTitulo;
     private Label etiquetaCodigo;
     private TextBox cajaTextoCodigo;
@@ -30,6 +33,9 @@ partial class FormularioClientes
 
     private void InitializeComponent()
     {
+        etiquetaDireccion = new Label();
+        cajaTextoDireccion = new TextBox();
+        botonGuardarDireccion = new Button();
         etiquetaTitulo = new Label();
         etiquetaCodigo = new Label();
         cajaTextoCodigo = new TextBox();
@@ -134,6 +140,21 @@ partial class FormularioClientes
         listaVisualClientes.Name = "listaVisualClientes";
         listaVisualClientes.Size = new Size(560, 160);
         Controls.Add(listaVisualClientes);
+        etiquetaDireccion.Location = new Point(380, 80);
+        etiquetaDireccion.Name = "etiquetaDireccion";
+        etiquetaDireccion.Size = new Size(80, 23);
+        etiquetaDireccion.Text = "Direccion";
+        Controls.Add(etiquetaDireccion);
+        cajaTextoDireccion.Location = new Point(380, 105);
+        cajaTextoDireccion.Name = "cajaTextoDireccion";
+        cajaTextoDireccion.Size = new Size(200, 23);
+        Controls.Add(cajaTextoDireccion);
+        botonGuardarDireccion.Location = new Point(380, 135);
+        botonGuardarDireccion.Name = "botonGuardarDireccion";
+        botonGuardarDireccion.Size = new Size(200, 30);
+        botonGuardarDireccion.Text = "Guardar direccion del cliente";
+        botonGuardarDireccion.Click += botonGuardarDireccion_Click;
+        Controls.Add(botonGuardarDireccion);
         ClientSize = new Size(600, 450);
         Name = "FormularioClientes";
         Text = "Registro de Clientes";
