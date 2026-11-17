@@ -1,0 +1,143 @@
+namespace jaroni_gestion.Formularios;
+
+partial class FormularioClientes
+{
+    private System.ComponentModel.IContainer components = null;
+    private Label etiquetaTitulo;
+    private Label etiquetaCodigo;
+    private TextBox cajaTextoCodigo;
+    private Label etiquetaNombre;
+    private TextBox cajaTextoNombre;
+    private Label etiquetaTelefono;
+    private TextBox cajaTextoTelefono;
+    private Label etiquetaTipoCliente;
+    private TextBox cajaTextoTipoCliente;
+    private Button botonAgregarCliente;
+    private Button botonBuscarCliente;
+    private Button botonEliminarCliente;
+    private Button botonPreorden;
+    private Button botonInorden;
+    private Button botonPostorden;
+    private Label etiquetaRecorrido;
+    private ListBox listaVisualClientes;
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && components != null)
+            components.Dispose();
+        base.Dispose(disposing);
+    }
+
+    private void InitializeComponent()
+    {
+        etiquetaTitulo = new Label();
+        etiquetaCodigo = new Label();
+        cajaTextoCodigo = new TextBox();
+        etiquetaNombre = new Label();
+        cajaTextoNombre = new TextBox();
+        etiquetaTelefono = new Label();
+        cajaTextoTelefono = new TextBox();
+        etiquetaTipoCliente = new Label();
+        cajaTextoTipoCliente = new TextBox();
+        botonAgregarCliente = new Button();
+        botonBuscarCliente = new Button();
+        botonEliminarCliente = new Button();
+        botonPreorden = new Button();
+        botonInorden = new Button();
+        botonPostorden = new Button();
+        etiquetaRecorrido = new Label();
+        listaVisualClientes = new ListBox();
+        SuspendLayout();
+        etiquetaTitulo.Location = new Point(20, 15);
+        etiquetaTitulo.Name = "etiquetaTitulo";
+        etiquetaTitulo.Size = new Size(300, 24);
+        etiquetaTitulo.Text = "Registro de Clientes";
+        Controls.Add(etiquetaTitulo);
+        etiquetaCodigo.Location = new Point(20, 50);
+        etiquetaCodigo.Name = "etiquetaCodigo";
+        etiquetaCodigo.Size = new Size(90, 23);
+        etiquetaCodigo.Text = "Código";
+        Controls.Add(etiquetaCodigo);
+        cajaTextoCodigo.Location = new Point(120, 50);
+        cajaTextoCodigo.Name = "cajaTextoCodigo";
+        cajaTextoCodigo.Size = new Size(180, 23);
+        Controls.Add(cajaTextoCodigo);
+        etiquetaNombre.Location = new Point(20, 80);
+        etiquetaNombre.Name = "etiquetaNombre";
+        etiquetaNombre.Size = new Size(90, 23);
+        etiquetaNombre.Text = "Nombre";
+        Controls.Add(etiquetaNombre);
+        cajaTextoNombre.Location = new Point(120, 80);
+        cajaTextoNombre.Name = "cajaTextoNombre";
+        cajaTextoNombre.Size = new Size(250, 23);
+        Controls.Add(cajaTextoNombre);
+        etiquetaTelefono.Location = new Point(20, 110);
+        etiquetaTelefono.Name = "etiquetaTelefono";
+        etiquetaTelefono.Size = new Size(90, 23);
+        etiquetaTelefono.Text = "Teléfono";
+        Controls.Add(etiquetaTelefono);
+        cajaTextoTelefono.Location = new Point(120, 110);
+        cajaTextoTelefono.Name = "cajaTextoTelefono";
+        cajaTextoTelefono.Size = new Size(250, 23);
+        Controls.Add(cajaTextoTelefono);
+        etiquetaTipoCliente.Location = new Point(20, 140);
+        etiquetaTipoCliente.Name = "etiquetaTipoCliente";
+        etiquetaTipoCliente.Size = new Size(95, 23);
+        etiquetaTipoCliente.Text = "Tipo de cliente";
+        Controls.Add(etiquetaTipoCliente);
+        cajaTextoTipoCliente.Location = new Point(120, 140);
+        cajaTextoTipoCliente.Name = "cajaTextoTipoCliente";
+        cajaTextoTipoCliente.Size = new Size(250, 23);
+        Controls.Add(cajaTextoTipoCliente);
+        botonAgregarCliente.Location = new Point(20, 180);
+        botonAgregarCliente.Name = "botonAgregarCliente";
+        botonAgregarCliente.Size = new Size(90, 30);
+        botonAgregarCliente.Text = "Agregar";
+        botonAgregarCliente.Click += botonAgregarCliente_Click;
+        Controls.Add(botonAgregarCliente);
+        botonBuscarCliente.Location = new Point(115, 180);
+        botonBuscarCliente.Name = "botonBuscarCliente";
+        botonBuscarCliente.Size = new Size(90, 30);
+        botonBuscarCliente.Text = "Buscar";
+        botonBuscarCliente.Click += botonBuscarCliente_Click;
+        Controls.Add(botonBuscarCliente);
+        botonEliminarCliente.Location = new Point(210, 180);
+        botonEliminarCliente.Name = "botonEliminarCliente";
+        botonEliminarCliente.Size = new Size(90, 30);
+        botonEliminarCliente.Text = "Eliminar";
+        botonEliminarCliente.Click += botonEliminarCliente_Click;
+        Controls.Add(botonEliminarCliente);
+        botonPreorden.Location = new Point(305, 180);
+        botonPreorden.Name = "botonPreorden";
+        botonPreorden.Size = new Size(90, 30);
+        botonPreorden.Text = "Preorden";
+        botonPreorden.Click += botonPreorden_Click;
+        Controls.Add(botonPreorden);
+        botonInorden.Location = new Point(400, 180);
+        botonInorden.Name = "botonInorden";
+        botonInorden.Size = new Size(90, 30);
+        botonInorden.Text = "Inorden";
+        botonInorden.Click += botonInorden_Click;
+        Controls.Add(botonInorden);
+        botonPostorden.Location = new Point(495, 180);
+        botonPostorden.Name = "botonPostorden";
+        botonPostorden.Size = new Size(90, 30);
+        botonPostorden.Text = "Postorden";
+        botonPostorden.Click += botonPostorden_Click;
+        Controls.Add(botonPostorden);
+        etiquetaRecorrido.Location = new Point(20, 220);
+        etiquetaRecorrido.Name = "etiquetaRecorrido";
+        etiquetaRecorrido.Size = new Size(300, 23);
+        etiquetaRecorrido.Text = "Recorrido: Inorden";
+        Controls.Add(etiquetaRecorrido);
+        listaVisualClientes.Location = new Point(20, 250);
+        listaVisualClientes.Name = "listaVisualClientes";
+        listaVisualClientes.Size = new Size(560, 160);
+        Controls.Add(listaVisualClientes);
+        ClientSize = new Size(600, 450);
+        Name = "FormularioClientes";
+        Text = "Registro de Clientes";
+        ResumeLayout(false);
+        PerformLayout();
+    }
+}

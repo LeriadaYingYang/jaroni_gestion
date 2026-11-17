@@ -1,0 +1,142 @@
+namespace jaroni_gestion.Formularios;
+
+partial class FormularioCotizaciones
+{
+    private System.ComponentModel.IContainer components = null;
+    private Label etiquetaTitulo;
+    private Label etiquetaNumero;
+    private TextBox cajaTextoNumero;
+    private Label etiquetaCliente;
+    private TextBox cajaTextoCliente;
+    private Label etiquetaProducto;
+    private TextBox cajaTextoProducto;
+    private Label etiquetaCantidad;
+    private TextBox cajaTextoCantidad;
+    private Label etiquetaPrecio;
+    private TextBox cajaTextoPrecio;
+    private Button botonRegistrarCotizacion;
+    private Button botonConsultarCotizacion;
+    private Button botonEliminarCotizacion;
+    private Button botonAnterior;
+    private Button botonSiguiente;
+    private Label etiquetaCotizacionActual;
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && components != null)
+            components.Dispose();
+        base.Dispose(disposing);
+    }
+
+    private void InitializeComponent()
+    {
+        etiquetaTitulo = new Label();
+        etiquetaNumero = new Label();
+        cajaTextoNumero = new TextBox();
+        etiquetaCliente = new Label();
+        cajaTextoCliente = new TextBox();
+        etiquetaProducto = new Label();
+        cajaTextoProducto = new TextBox();
+        etiquetaCantidad = new Label();
+        cajaTextoCantidad = new TextBox();
+        etiquetaPrecio = new Label();
+        cajaTextoPrecio = new TextBox();
+        botonRegistrarCotizacion = new Button();
+        botonConsultarCotizacion = new Button();
+        botonEliminarCotizacion = new Button();
+        botonAnterior = new Button();
+        botonSiguiente = new Button();
+        etiquetaCotizacionActual = new Label();
+        SuspendLayout();
+        etiquetaTitulo.Location = new Point(20, 15);
+        etiquetaTitulo.Name = "etiquetaTitulo";
+        etiquetaTitulo.Size = new Size(300, 24);
+        etiquetaTitulo.Text = "Cotizaciones Comerciales";
+        Controls.Add(etiquetaTitulo);
+        etiquetaNumero.Location = new Point(20, 50);
+        etiquetaNumero.Name = "etiquetaNumero";
+        etiquetaNumero.Size = new Size(90, 23);
+        etiquetaNumero.Text = "Número";
+        Controls.Add(etiquetaNumero);
+        cajaTextoNumero.Location = new Point(110, 50);
+        cajaTextoNumero.Name = "cajaTextoNumero";
+        cajaTextoNumero.Size = new Size(160, 23);
+        Controls.Add(cajaTextoNumero);
+        etiquetaCliente.Location = new Point(20, 80);
+        etiquetaCliente.Name = "etiquetaCliente";
+        etiquetaCliente.Size = new Size(90, 23);
+        etiquetaCliente.Text = "Cliente";
+        Controls.Add(etiquetaCliente);
+        cajaTextoCliente.Location = new Point(110, 80);
+        cajaTextoCliente.Name = "cajaTextoCliente";
+        cajaTextoCliente.Size = new Size(160, 23);
+        Controls.Add(cajaTextoCliente);
+        etiquetaProducto.Location = new Point(20, 110);
+        etiquetaProducto.Name = "etiquetaProducto";
+        etiquetaProducto.Size = new Size(90, 23);
+        etiquetaProducto.Text = "Producto";
+        Controls.Add(etiquetaProducto);
+        cajaTextoProducto.Location = new Point(110, 110);
+        cajaTextoProducto.Name = "cajaTextoProducto";
+        cajaTextoProducto.Size = new Size(160, 23);
+        Controls.Add(cajaTextoProducto);
+        etiquetaCantidad.Location = new Point(20, 140);
+        etiquetaCantidad.Name = "etiquetaCantidad";
+        etiquetaCantidad.Size = new Size(90, 23);
+        etiquetaCantidad.Text = "Cantidad";
+        Controls.Add(etiquetaCantidad);
+        cajaTextoCantidad.Location = new Point(110, 140);
+        cajaTextoCantidad.Name = "cajaTextoCantidad";
+        cajaTextoCantidad.Size = new Size(160, 23);
+        Controls.Add(cajaTextoCantidad);
+        etiquetaPrecio.Location = new Point(20, 170);
+        etiquetaPrecio.Name = "etiquetaPrecio";
+        etiquetaPrecio.Size = new Size(90, 23);
+        etiquetaPrecio.Text = "Precio";
+        Controls.Add(etiquetaPrecio);
+        cajaTextoPrecio.Location = new Point(110, 170);
+        cajaTextoPrecio.Name = "cajaTextoPrecio";
+        cajaTextoPrecio.Size = new Size(160, 23);
+        Controls.Add(cajaTextoPrecio);
+        botonRegistrarCotizacion.Location = new Point(20, 210);
+        botonRegistrarCotizacion.Name = "botonRegistrarCotizacion";
+        botonRegistrarCotizacion.Size = new Size(100, 30);
+        botonRegistrarCotizacion.Text = "Registrar";
+        botonRegistrarCotizacion.Click += botonRegistrarCotizacion_Click;
+        Controls.Add(botonRegistrarCotizacion);
+        botonConsultarCotizacion.Location = new Point(130, 210);
+        botonConsultarCotizacion.Name = "botonConsultarCotizacion";
+        botonConsultarCotizacion.Size = new Size(100, 30);
+        botonConsultarCotizacion.Text = "Consultar";
+        botonConsultarCotizacion.Click += botonConsultarCotizacion_Click;
+        Controls.Add(botonConsultarCotizacion);
+        botonEliminarCotizacion.Location = new Point(240, 210);
+        botonEliminarCotizacion.Name = "botonEliminarCotizacion";
+        botonEliminarCotizacion.Size = new Size(100, 30);
+        botonEliminarCotizacion.Text = "Eliminar";
+        botonEliminarCotizacion.Click += botonEliminarCotizacion_Click;
+        Controls.Add(botonEliminarCotizacion);
+        botonAnterior.Location = new Point(350, 210);
+        botonAnterior.Name = "botonAnterior";
+        botonAnterior.Size = new Size(100, 30);
+        botonAnterior.Text = "Anterior";
+        botonAnterior.Click += botonAnterior_Click;
+        Controls.Add(botonAnterior);
+        botonSiguiente.Location = new Point(460, 210);
+        botonSiguiente.Name = "botonSiguiente";
+        botonSiguiente.Size = new Size(100, 30);
+        botonSiguiente.Text = "Siguiente";
+        botonSiguiente.Click += botonSiguiente_Click;
+        Controls.Add(botonSiguiente);
+        etiquetaCotizacionActual.Location = new Point(20, 260);
+        etiquetaCotizacionActual.Name = "etiquetaCotizacionActual";
+        etiquetaCotizacionActual.Size = new Size(540, 160);
+        etiquetaCotizacionActual.Text = "Cotización actual: ninguna";
+        Controls.Add(etiquetaCotizacionActual);
+        ClientSize = new Size(600, 450);
+        Name = "FormularioCotizaciones";
+        Text = "Cotizaciones Comerciales";
+        ResumeLayout(false);
+        PerformLayout();
+    }
+}

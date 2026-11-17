@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net10.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Update="ModuloInventario\FormularioInventario.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="ModuloInventario\FormularioInventario.Designer.cs">
+            <DependentUpon>FormularioInventario.cs</DependentUpon>
+        </Compile>
+        <Compile Update="ModuloCotizaciones\FormularioCotizaciones.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="ModuloCotizaciones\FormularioCotizaciones.Designer.cs">
+            <DependentUpon>FormularioCotizaciones.cs</DependentUpon>
+        </Compile>
+        <Compile Update="ModuloRepartos\FormularioRepartos.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="ModuloRepartos\FormularioRepartos.Designer.cs">
+            <DependentUpon>FormularioRepartos.cs</DependentUpon>
+        </Compile>
+        <Compile Update="ModuloVentas\FormularioVentas.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="ModuloVentas\FormularioVentas.Designer.cs">
+            <DependentUpon>FormularioVentas.cs</DependentUpon>
+        </Compile>
+        <Compile Update="ModuloPedidos\FormularioPedidos.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="ModuloPedidos\FormularioPedidos.Designer.cs">
+            <DependentUpon>FormularioPedidos.cs</DependentUpon>
+        </Compile>
+        <Compile Update="ModuloClientes\FormularioClientes.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="ModuloClientes\FormularioClientes.Designer.cs">
+            <DependentUpon>FormularioClientes.cs</DependentUpon>
+        </Compile>
+        <Compile Update="ModuloRedDistribucion\FormularioRedDistribucion.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="ModuloRedDistribucion\FormularioRedDistribucion.Designer.cs">
+            <DependentUpon>FormularioRedDistribucion.cs</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+</Project>
